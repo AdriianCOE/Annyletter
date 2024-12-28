@@ -303,7 +303,7 @@
             const messages = [
                 "Isso agora tá meio crinjola né?",
                 "Deixa eu testar uns negócios...",
-                "Olha o que eu sei fazer!",
+                "Olha o que eu sei fazer hehe",
                 "Eu te gosto em 20 línguas!",
             ];
 
@@ -333,7 +333,7 @@
                     container.appendChild(messageElement);
                     typeText(messageElement, messages[index], () => {
                         index++;
-                        setTimeout(showNextMessage, 300); // Delay entre mensagens
+                        setTimeout(showNextMessage, 400); // Delay entre mensagens
                     });
                 } else if (callback) {
                     callback();
@@ -415,7 +415,7 @@
         window.open("https://youtu.be/IslBaZf7Vqw?si=4-M446LaGH-L7SbR", "_blank"); // Abre o vídeo em uma nova aba
         setTimeout(() => {
             window.close(); // Fecha a página atual
-        }, 2000); // Fecha após 2 segundos
+        }, 1500); // Fecha após 1,5 segundos
     }
 
     // CSS styles for buttons
