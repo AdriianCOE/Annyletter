@@ -18,4 +18,4 @@ Não sou programador nenhum, e só brinco as vezes testando..
 
 1. Clone este repositório em sua máquina:
    ```bash
-   git clone https://github.com/seu-usuario/mensagem-para-anny.git
+   git clone https://github.com/AdriianCOE/Cartinha-Digital-Pra-Anny.git
