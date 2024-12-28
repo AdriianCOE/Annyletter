@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem para Anny</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .typing {
+            font-size: 2rem;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            width: 0;
+            overflow: hidden;
+            animation: typing 3s steps(12, end), blink 0.6s step-end infinite alternate;
+        }
+
+        .fade-in {
+            font-size: 1.5rem;
+            opacity: 0;
+            margin-top: 1rem;
+            animation: fadeIn 3s ease-in 3s forwards;
+        }
+
+        .fade-in-sad {
+            font-size: 1.5rem;
+            opacity: 0;
+            margin-top: 1rem;
+            animation: fadeIn 3s ease-in 6s forwards;
+        }
+
+        .final-message {
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 3s ease-in 9s forwards;
+        }
+
+        .follow-up {
+            font-size: 1.5rem;
+            opacity: 0;
+            margin-top: 1rem;
+            animation: fadeIn 2s ease-in 12s forwards;
+        }
+
+        .question {
+            font-size: 1.5rem;
+            opacity: 0;
+            margin-top: 1rem;
+            animation: fadeIn 2s ease-in 14s forwards;
+        }
+
+        .buttons {
+            margin-top: 1rem;
+            opacity: 0;
+            animation: fadeIn 2s ease-in 16s forwards;
+        }
+
+        .button {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            font-size: 1rem;
+            color: white;
+            background-color: transparent;
+            border: 1px solid white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button.no:hover {
+            position: relative;
+            left: calc(50% - 50px + (Math.random() * 200 - 100px));
+            top: calc(50% - 20px + (Math.random() * 200 - 100px));
+        }
+
+        .watermark {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 8ch; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @keyframes rainbow {
+            0% { background-color: red; }
+            20% { background-color: orange; }
+            40% { background-color: yellow; }
+            60% { background-color: green; }
+            80% { background-color: blue; }
+            100% { background-color: rgb(224, 107, 219); }
+        }
+
+        @keyframes blueFade {
+            0% { background-color: rgb(224, 107, 219); }
+            20% { background-color: orange; }
+            40% { background-color: yellow; }
+            60% { background-color: green; }
+            80% { background-color: rgb(235, 38, 38); }
+            100% { background-color: rgb(37, 230, 255); }
+        }
+
+        @keyframes blackRainbow {
+            0% { background-color: rgb(37, 230, 255); }
+            20% { background-color: red; }
+            40% { background-color: orange; }
+            60% { background-color: yellow; }
+            80% { background-color: green; }
+            100% { background-color: black; }
+        }
+
+        .final-text {
+            opacity: 0;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            animation: fadeIn 2s ease-in forwards;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-out {
+            animation: fadeOut 2s ease-in forwards;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="typing">Oi Anny!!!</div>
+        <div class="fade-in">Eu acho que você ultimamente não está bem</div>
+        <div class="fade-in-sad">:(</div>
+        <div class="final-message">Mas tudo bem, tudo é temporário, e tomara que isso te deixe um pouco melhor</div>
+        <div class="follow-up">Mas antes, uma pergunta:</div>
+        <div class="question">Você sabia que você é do tamanho de um macaquinho, né?</div>
+        <div class="buttons">
+            <button class="button no">NÃO</button>
+            <button class="button yes" onclick="showMessage()">SIM</button>
+        </div>
+    </div>
+    <div class="watermark">Adriian</div>
+
+    <script>
+        const noButton = document.querySelector('.button.no');
+
+        noButton.addEventListener('mouseover', () => {
+            const randomX = Math.random() * (window.innerWidth - 100);
+            const randomY = Math.random() * (window.innerHeight - 50);
+
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        });
+
+        function showMessage() {
+            document.body.innerHTML = `
+                <div class="fade-out" style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif; font-size: 2rem; text-align: center;">
+                    Ótimo, ainda bem que você sempre soube &gt;:)
+                </div>
+            `;
+
+            setTimeout(() => {
+                document.body.style.animation = 'rainbow 5s linear forwards';
+
+                setTimeout(() => {
+                    document.body.innerHTML = `
+                        <div id="transition-container" style="animation: fadeIn 2s forwards;">
+                            <div class="final-text">
+                                Viu que o fundo ficou roxo?<br>
+                                Você me disse que é a sua cor preferida, e ela realmente combina com você.<br>
+                                Não me esqueço.<br>
+                                <button class="button" onclick="fadeOutTextAndShowNextPage()">:)</button>
+                            </div>
+                        </div>
+                    `;
+                }, 5000);
+            }, 2000);
+        }
+
+        function fadeOutTextAndShowNextPage() {
+            const container = document.getElementById('transition-container');
+            container.style.animation = 'fadeOut 2s forwards';
+
+            setTimeout(() => {
+                showNextPage();
+            }, 2000);
+        }
+
+        function showNextPage() {
+            document.body.style.animation = 'blueFade 5s linear forwards';
+            setTimeout(() => {
+                document.body.innerHTML = `
+                    <div id="carijo-container" class="final-text">
+                        Carijó Despreparado, né?<br>
+                        O fundo agora está azul porque acho que lembra One Piece.<br>
+                        E toda vez que vejo algo similar, lembro de você.<br>
+                        <button class="button" onclick="fadeOutCarijoTextAndShowNextPage()">:)</button>
+                    </div>
+                `;
+            }, 5000);
+        }
+
+        function fadeOutCarijoTextAndShowNextPage() {
+            const carijoContainer = document.getElementById('carijo-container');
+            carijoContainer.style.animation = 'fadeOut 2s forwards';
+
+            setTimeout(() => {
+                showSeriousPage();
+            }, 2000);
+        }
+function showSeriousPage() {
+    document.body.style.animation = 'blackRainbow 5s linear forwards';
+    setTimeout(() => {
+        document.body.innerHTML = `
+            <div class="final-text">
+                Agora vamos falar sério...<br>
+                Você sabe que eu te gosto, né?<br>
+            </div>
+            <div class="fade-in">
+                E eu quero manter isso...<br>
+            </div>
+            <div class="fade-in" style="animation-delay: 3s;">
+                Eu quero ser a pessoa que você pode contar sempre!<br>
+            </div>
+        `;
+    }, 5000);
+}
+    </script>
+</body>
+</html>
 
