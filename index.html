@@ -14,16 +14,16 @@
             min-height: 100vh;
             background-color: black;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: "Georgia", serif;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden;
         }
 
         .typing {
@@ -39,40 +39,49 @@
             font-size: 1.5rem;
             opacity: 0;
             margin-top: 1rem;
-            animation: fadeIn 3s ease-in 3s forwards;
+            animation: fadeIn 2s ease-in forwards;
         }
 
-        .fade-in-sad {
+        .fade-out {
             font-size: 1.5rem;
             opacity: 0;
             margin-top: 1rem;
-            animation: fadeIn 3s ease-in 6s forwards;
+            animation: fadeOut 2s ease-in forwards;
         }
 
-        .final-message {
-            font-size: 1.5rem;
-            opacity: 0;
-            animation: fadeIn 3s ease-in 9s forwards;
+        .fade-in:nth-child(2) {
+            animation-delay: 3s;
         }
 
-        .follow-up {
-            font-size: 1.5rem;
-            opacity: 0;
-            margin-top: 1rem;
-            animation: fadeIn 2s ease-in 12s forwards;
+        .fade-in:nth-child(3) {
+            animation-delay: 6s;
         }
 
+        .final-message,
+        .follow-up,
         .question {
             font-size: 1.5rem;
             opacity: 0;
             margin-top: 1rem;
-            animation: fadeIn 2s ease-in 14s forwards;
+            animation: fadeIn 3s ease-in forwards;
+        }
+
+        .final-message {
+            animation-delay: 9s;
+        }
+
+        .follow-up {
+            animation-delay: 12s;
+        }
+
+        .question {
+            animation-delay: 15s;
         }
 
         .buttons {
             margin-top: 1rem;
             opacity: 0;
-            animation: fadeIn 2s ease-in 16s forwards;
+            animation: fadeIn 2s ease-in 17s forwards;
         }
 
         .button {
@@ -86,18 +95,22 @@
             transition: 0.3s;
         }
 
-        .button.no:hover {
+        .button.no {
             position: relative;
+        }
+
+        .button.no:hover {
             left: calc(50% - 50px + (Math.random() * 200 - 100px));
             top: calc(50% - 20px + (Math.random() * 200 - 100px));
         }
 
         .watermark {
-            position: absolute;
+            position: fixed;
             bottom: 10px;
             right: 10px;
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.2);
+            z-index: 10;
         }
 
         @keyframes typing {
@@ -130,36 +143,35 @@
 
         @keyframes blueFade {
             0% { background-color: rgb(224, 107, 219); }
-            20% { background-color: orange; }
-            40% { background-color: yellow; }
-            60% { background-color: green; }
-            80% { background-color: rgb(235, 38, 38); }
             100% { background-color: rgb(37, 230, 255); }
         }
 
         @keyframes blackRainbow {
             0% { background-color: rgb(37, 230, 255); }
-            20% { background-color: red; }
-            40% { background-color: orange; }
-            60% { background-color: yellow; }
-            80% { background-color: green; }
             100% { background-color: black; }
         }
 
         .final-text {
-            opacity: 0;
-            color: white;
             font-size: 1.5rem;
             text-align: center;
+            opacity: 0;
             animation: fadeIn 2s ease-in forwards;
         }
 
-        .hidden {
-            display: none;
+        .final-text:nth-child(1) {
+            animation-delay: 0s;
         }
 
-        .fade-out {
-            animation: fadeOut 2s ease-in forwards;
+        .final-text:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        .final-text:nth-child(3) {
+            animation-delay: 6s;
+        }
+
+        .final-text:nth-child(4) {
+            animation-delay: 9s;
         }
 
     </style>
@@ -168,7 +180,7 @@
     <div class="container">
         <div class="typing">Oi Anny!!!</div>
         <div class="fade-in">Eu acho que você ultimamente não está bem</div>
-        <div class="fade-in-sad">:(</div>
+        <div class="fade-in">:(</div>
         <div class="final-message">Mas tudo bem, tudo é temporário, e tomara que isso te deixe um pouco melhor</div>
         <div class="follow-up">Mas antes, uma pergunta:</div>
         <div class="question">Você sabia que você é do tamanho de um macaquinho, né?</div>
@@ -183,8 +195,8 @@
         const noButton = document.querySelector('.button.no');
 
         noButton.addEventListener('mouseover', () => {
-            const randomX = Math.random() * (window.innerWidth - 100);
-            const randomY = Math.random() * (window.innerHeight - 50);
+            const randomX = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const randomY = Math.random() * (window.innerHeight - noButton.offsetHeight);
 
             noButton.style.position = 'absolute';
             noButton.style.left = `${randomX}px`;
@@ -193,9 +205,10 @@
 
         function showMessage() {
             document.body.innerHTML = `
-                <div class="fade-out" style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif; font-size: 2rem; text-align: center;">
-                    Ótimo, ainda bem que você sempre soube &gt;:)
+                <div class="fade-out" style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Georgia, serif; font-size: 2rem; text-align: center;">
+                    Ótimo, ainda bem que você sabe hehe &gt;:)
                 </div>
+                <div class="watermark">Adriian</div>
             `;
 
             setTimeout(() => {
@@ -211,6 +224,7 @@
                                 <button class="button" onclick="fadeOutTextAndShowNextPage()">:)</button>
                             </div>
                         </div>
+                        <div class="watermark">Adriian</div>
                     `;
                 }, 5000);
             }, 2000);
@@ -235,6 +249,7 @@
                         E toda vez que vejo algo similar, lembro de você.<br>
                         <button class="button" onclick="fadeOutCarijoTextAndShowNextPage()">:)</button>
                     </div>
+                    <div class="watermark">Adriian</div>
                 `;
             }, 5000);
         }
@@ -247,23 +262,20 @@
                 showSeriousPage();
             }, 2000);
         }
-function showSeriousPage() {
-    document.body.style.animation = 'blackRainbow 5s linear forwards';
-    setTimeout(() => {
-        document.body.innerHTML = `
-            <div class="final-text">
-                Agora vamos falar sério...<br>
-                Você sabe que eu te gosto, né?<br>
-            </div>
-            <div class="fade-in">
-                E eu quero manter isso...<br>
-            </div>
-            <div class="fade-in" style="animation-delay: 3s;">
-                Eu quero ser a pessoa que você pode contar sempre!<br>
-            </div>
-        `;
-    }, 5000);
-}
+
+        function showSeriousPage() {
+            document.body.style.animation = 'blackRainbow 5s linear forwards';
+            setTimeout(() => {
+                document.body.innerHTML = `
+                    <div class="final-text">
+                                Agora vamos falar sério...?<br>
+                               Você sabe que eu te gosto, né?<br>
+                    <div class="fade-in">E eu quero manter isso...<br>
+                                Eu quero ser a pessoa que você pode contar sempre!<br>
+                    <div class="watermark">Adriian</div>
+                `;
+            }, 5000);
+        }
     </script>
 </body>
 </html>
