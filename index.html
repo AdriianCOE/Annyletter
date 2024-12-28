@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensagem para Anny</title>
+    <title>Annyletter</title>
     <style>
         body {
             margin: 0;
@@ -28,7 +28,7 @@
 
         .typing {
             font-size: 2rem;
-            white-space: nowrap;
+            white-space: nowrap;    
             border-right: 2px solid white;
             width: 0;
             overflow: hidden;
@@ -138,11 +138,11 @@
             40% { background-color: yellow; }
             60% { background-color: green; }
             80% { background-color: blue; }
-            100% { background-color: rgb(224, 107, 219); }
+            100% { background-color: purple; }
         }
 
         @keyframes blueFade {
-            0% { background-color: rgb(224, 107, 219); }
+            0% { background-color: purple; }
             100% { background-color: rgb(37, 230, 255); }
         }
 
@@ -267,15 +267,178 @@
             document.body.style.animation = 'blackRainbow 5s linear forwards';
             setTimeout(() => {
                 document.body.innerHTML = `
-                    <div class="final-text">
-                                Agora vamos falar sério...?<br>
-                               Você sabe que eu te gosto, né?<br>
-                    <div class="fade-in">E eu quero manter isso...<br>
-                                Eu quero ser a pessoa que você pode contar sempre!<br>
-                    <div class="watermark">Adriian</div>
+                    <div class="final-text" id="serious-text">
+                        Agora vamos falar sério...<br>
+                        Você sabe que eu te gosto, né?<br>
+                        E eu quero manter isso...<br><br>
+                        Eu quero ser a pessoa que você pode contar sempre!<br>
+                        <button class="button" onclick="batata()">:)</button>
+                        <div class="watermark">Adriian</div>
+                    </div>
                 `;
             }, 5000);
         }
+
+        function batata() {
+            const seriousText = document.getElementById('serious-text');
+            seriousText.style.animation = 'fadeOut 2s forwards';
+
+            setTimeout(() => {
+                document.body.style.animation = 'blackRainbow 5s linear forwards';
+                setTimeout(() => {
+                    document.body.innerHTML = `
+                        <div id="batata-container">
+                            <div id="typing-title"></div>
+                            <div id="translations"></div>
+                            <div id="final-comment" style="opacity: 0; font-size: 1.5rem; margin-top: 1rem;"></div>
+                            <div class="watermark">Adriian</div>
+                        </div>
+                    `;
+                    startTypingSequence();
+                }, 2000);
+            }, 2000);
+        }
+
+        function startTypingSequence() {
+            const messages = [
+                "Isso agora tá meio crinjola né?",
+                "Deixa eu testar uns negócios...",
+                "Olha o que eu sei fazer!",
+                "Eu te gosto em 20 línguas!",
+            ];
+
+            const translations = [
+                "I like you (Inglês)", "Te quiero (Espanhol)", "Ich mag dich (Alemão)",
+                "Je t'aime (Francês)", "Ti amo (Italiano)", "Eu te gosto (Português)",
+                "Я тебя люблю (Russo)", "私はあなたが好きです (Japonês)", "我喜欢你 (Chines)",
+                "나는 너를 좋아해 (Coreano)", "Ik hou van jou (Alemão)", "Jeg kan godt lide dig (Dinamarquês)",
+                "Jeg liker deg (Noruego)", "Jag tycker om dig (Sueco)", "Seni seviyorum (Turco)",
+                "Mi piace (Italiano)", "Miluji tě (Checo)", "Îmi placi (Romeno)",
+                "Të dua (Albanês)", "Αγαπώ σε (Grego)"
+            ];
+
+            let container = document.getElementById("typing-title");
+            showMessagesSequentially(container, messages, () => {
+                let translationsContainer = document.getElementById("translations");
+                showMessagesSequentially(translationsContainer, translations, showFinalComment);
+            });
+        }
+
+        function showMessagesSequentially(container, messages, callback) {
+            let index = 0;
+
+            function showNextMessage() {
+                if (index < messages.length) {
+                    let messageElement = document.createElement("div");
+                    container.appendChild(messageElement);
+                    typeText(messageElement, messages[index], () => {
+                        index++;
+                        setTimeout(showNextMessage, 300); // Delay entre mensagens
+                    });
+                } else if (callback) {
+                    callback();
+                }
+            }
+
+            showNextMessage();
+        }
+
+        function typeText(element, text, callback) {
+            let i = 0;
+            element.innerHTML = "";
+
+            function typingEffect() {
+                if (i < text.length) {
+                    element.innerHTML += text[i];
+                    i++;
+                    setTimeout(typingEffect, 50);
+                } else if (callback) {
+                    callback();
+                }
+            }
+
+            typingEffect();
+        }
+
+        function showFinalComment() {
+            const finalComment = document.getElementById("final-comment");
+            finalComment.innerHTML = "Uau, isso demorou um pouquinho <br>Eu poderia ter colocado mais mais né?<br>";
+            finalComment.style.animation = "fadeIn 2s ease-in forwards";
+
+            const button = document.createElement("button");
+            button.className = "button";
+            button.textContent = ":)";
+            button.onclick = transitionToNextPage;
+            finalComment.appendChild(button);
+        }
+
+        function transitionToNextPage() {
+    const container = document.getElementById("batata-container");
+    container.style.animation = "fadeOut 2s forwards";
+
+    setTimeout(() => {
+        document.body.innerHTML = `
+            <div id="next-page" style="opacity: 0; animation: fadeIn 2s ease-in forwards;">
+                <div id="sequenced-messages"></div>
+                <button id="provoke-button" class="button" style="margin-top: 1rem; opacity: 0;">amassa nadaaa</button>
+                <div id="response-container" style="margin-top: 1rem; opacity: 0;"></div>
+            </div>
+        `;
+
+        const sequencedMessages = [
+            "Uau, eu queria poder dizer muito mais coisas, mas acho que já tá muito longo...",
+            "É isso Anny, te gosto muitão tá bom boboca?",
+            "(Eu te amasso muito no Uno, você nunca vai admitir)."
+        ];
+
+        const container = document.getElementById("sequenced-messages");
+        showMessagesSequentially(container, sequencedMessages, () => {
+            const provokeButton = document.getElementById("provoke-button");
+            provokeButton.style.opacity = 1;
+            provokeButton.style.animation = "fadeIn 1s ease-in forwards";
+        });
+
+        document.getElementById("provoke-button").onclick = () => {
+            const responseContainer = document.getElementById("response-container");
+            responseContainer.style.opacity = 1;
+            typeText(responseContainer, "Amasso sim bobona ♥", () => {
+                setTimeout(() => {
+                    closePageAfterVideo(); // Chama a função que abre o vídeo e fecha a página
+                }, 1500); // Reduzido o tempo para 1,5 segundos
+            });
+        };
+    }, 1500);
+}
+
+    // Função para abrir o vídeo e fechar a página
+    function closePageAfterVideo() {
+        window.open("https://youtu.be/IslBaZf7Vqw?si=4-M446LaGH-L7SbR", "_blank"); // Abre o vídeo em uma nova aba
+        setTimeout(() => {
+            window.close(); // Fecha a página atual
+        }, 2000); // Fecha após 2 segundos
+    }
+
+    // CSS styles for buttons
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .button {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            font-size: 1rem;
+            color: white;
+            background-color: transparent;
+            border: 1px solid white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background-color: white;
+            color: black;
+        }
+    `;
+    document.head.appendChild(style);
+
     </script>
 </body>
 </html>
