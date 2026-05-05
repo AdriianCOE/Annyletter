@@ -1,6 +1,6 @@
 # Annyletter
 
-**Annyletter** é um projeto pessoal antigo, criado ainda na época da escola, com o objetivo de surpreender uma pessoa muito especial.
+**Annyletter** épequena carta antiga, criei ainda na escola como uma carta digital simples.  Bem básico e até um pouco vergonhoso, mantive aqui pra ver a minha evolução ao longo do tempo.
 
 A proposta foi desenvolver uma **cartinha digital interativa**, utilizando tecnologias básicas da web para criar uma experiência simples, mas significativa.
 
@@ -52,4 +52,4 @@ Este não é um projeto profissional — foi desenvolvido como forma de aprendiz
 
 ## Nota Final
 
-Apesar de simples (e um pouco constrangedor hoje ), este projeto mostra o quanto evoluí desde então.
+Apesar de simples (e um pouco constrangedor hoje ), essa cartinha mostra o quanto melhorei.
