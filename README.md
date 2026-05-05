@@ -52,4 +52,4 @@ Este não é um projeto profissional — foi desenvolvido como forma de aprendiz
 
 ## Nota Final
 
-Apesar de simples (e um pouco constrangedor hoje 😅), este projeto mostra o quanto evoluí desde então.
+Apesar de simples (e um pouco constrangedor hoje ), este projeto mostra o quanto evoluí desde então.
