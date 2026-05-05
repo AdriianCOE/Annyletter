@@ -1,6 +1,6 @@
 # Annyletter
 
-**Annyletter** épequena carta antiga, criei ainda na escola como uma carta digital simples.  Bem básico e até um pouco vergonhoso, mantive aqui pra ver a minha evolução ao longo do tempo.
+**Annyletter** é pequena carta antiga, criei ainda na escola como uma carta digital simples.  Bem básico e até um pouco vergonhoso, mantive aqui pra ver a minha evolução ao longo do tempo.
 
 A proposta foi desenvolver uma **cartinha digital interativa**, utilizando tecnologias básicas da web para criar uma experiência simples, mas significativa.
 
